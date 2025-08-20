@@ -8,8 +8,13 @@ export default function Home() {
     <div className="home-root">
       <h1>IPA – Israeli Pint App</h1>
 
-      <div className="login-btn-wrapper">
-        <Btn name="login" />
+      <div className="btns-row">
+        <div className="filter-btn-wrapper">
+          <Btn name="filter" />
+        </div>
+        <div className="login-btn-wrapper">
+          <Btn name="login" />
+        </div>
         {/* <LoadingBtn /> */}
       </div>
       <Map />

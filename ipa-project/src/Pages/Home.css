@@ -13,12 +13,20 @@ body,
   position: relative;
 }
 
-.login-btn-wrapper {
+.btns-row {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  align-items: center;
+}
+
+.filter-btn-wrapper {
+  padding-left: 2rem;
+}
+
+.login-btn-wrapper {
   padding-right: 2rem;
 }
 
