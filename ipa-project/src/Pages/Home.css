@@ -1,0 +1,27 @@
+body,
+.home-root {
+  margin: 0;
+  padding: 0;
+}
+
+.home-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  position: relative;
+}
+
+.login-btn-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-right: 2rem;
+}
+
+.home-root > h1 {
+  margin-top: 0.5rem;
+}
