@@ -3,6 +3,7 @@ import "./Home.css";
 import Btn from "../Components/Btn.jsx";
 import LoadingBtn from "../Components/LoadingBtn.jsx";
 import { useState } from "react";
+import Filter from "../Filter.jsx";
 
 export default function Home() {
   const [dummyBusi, setDummyBusi] = useState([
@@ -53,7 +54,12 @@ export default function Home() {
     { id: 7, name: "Florentin Pils", type: "Pilsner", business_id: 4 },
     { id: 8, name: "Dancing Camel IPA", type: "IPA", business_id: 4 },
     { id: 9, name: "Jaffa Pale Ale", type: "Pale Ale", business_id: 5 },
-    { id: 10, name: "Jaffa Citrus Wheat", type: "Fruit Wheat Beer", business_id: 5 },
+    {
+      id: 10,
+      name: "Jaffa Citrus Wheat",
+      type: "Fruit Wheat Beer",
+      business_id: 5,
+    },
   ]);
 
   return (
@@ -62,7 +68,7 @@ export default function Home() {
 
       <div className="btns-row">
         <div className="filter-btn-wrapper">
-          <Btn name="filter" />
+          <Filter businesses={dummyBusi} beers={dummyBeers} />
         </div>
         <div className="login-btn-wrapper">
           <Btn name="login" />

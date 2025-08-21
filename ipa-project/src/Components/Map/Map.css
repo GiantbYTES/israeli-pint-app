@@ -11,4 +11,11 @@
   display: block;
   border-radius: 18px;
   box-shadow: 0 4px 24px #0002;
+  z-index: 0; /* Ensure map is below overlays */
+}
+
+/* Make sure the Mantine dropdown appears above the map */
+.mantine-MultiSelect-dropdown {
+  z-index: 1001 !important;
+  position: relative;
 }
