@@ -1,0 +1,25 @@
+.login-form-container {
+  max-width: 350px;
+  margin: 60px auto;
+  padding: 24px;
+  box-shadow: 0 2px 12px #0001;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.login-form-title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-family: Outfit, var(--mantine-font-family);
+  font-weight: 500;
+}
+
+.subtitle {
+  color: var(--mantine-color-dimmed);
+  font-size: var(--mantine-font-size-sm);
+  text-align: center;
+  margin-top: 5px;
+}
