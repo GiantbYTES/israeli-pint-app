@@ -3,7 +3,8 @@ import "./Home.css";
 import Btn from "../Components/Btn.jsx";
 import LoadingBtn from "../Components/LoadingBtn.jsx";
 import { useState } from "react";
-import Filter from "../Filter.jsx";
+import BeerTypeFilter from "../Components/BeerTypeFilter.jsx";
+import BeerNameFilter from "../Components/BeerNameFilter.jsx";
 
 export default function Home() {
   const [dummyBusi, setDummyBusi] = useState([
@@ -62,20 +63,52 @@ export default function Home() {
     },
   ]);
 
+  const [selectedBeers, setSelectedBeers] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState([]);
+
+  // Get unique beer types for the BeerTypeFilter
+  const beerTypes = Array.from(new Set(dummyBeers.map((beer) => beer.type)));
+
+  // Filter businesses based on selected beers and types
+  const filteredBusinesses = dummyBusi.filter((busi) => {
+    // Find all beers for this business
+    const beersForBusiness = dummyBeers.filter(
+      (beer) => beer.business_id === busi.id
+    );
+    // If filtering by beer name
+    const matchesBeer =
+      selectedBeers.length === 0 ||
+      beersForBusiness.some((beer) => selectedBeers.includes(beer.name));
+    // If filtering by beer type
+    const matchesType =
+      selectedTypes.length === 0 ||
+      beersForBusiness.some((beer) => selectedTypes.includes(beer.type));
+    return matchesBeer && matchesType;
+  });
+
   return (
     <div className="home-root">
-      <h1>IPA – Israeli Pint App</h1>
-
+      <h1>IPA - Israeli Pint App</h1>
       <div className="btns-row">
         <div className="filter-btn-wrapper">
-          <Filter businesses={dummyBusi} beers={dummyBeers} />
+          <BeerNameFilter
+            beers={dummyBeers}
+            value={selectedBeers}
+            onChange={setSelectedBeers}
+          />
+        </div>
+        <div className="beer-type-filter-wrapper">
+          <BeerTypeFilter
+            beerTypes={beerTypes}
+            value={selectedTypes}
+            onChange={setSelectedTypes}
+          />
         </div>
         <div className="login-btn-wrapper">
           <Btn name="login" />
         </div>
-        {/* <LoadingBtn /> */}
       </div>
-      <Map businesses={dummyBusi} beers={dummyBeers} />
+      <Map businesses={filteredBusinesses} beers={dummyBeers} />
     </div>
   );
 }

@@ -20,10 +20,12 @@ body,
   margin-top: 1rem;
   margin-bottom: 1rem;
   align-items: center;
+  gap: 24px; /* Added gap for spacing between filters */
 }
 
 .filter-btn-wrapper {
   padding-left: 2rem;
+  max-width: 30vh;
 }
 
 .login-btn-wrapper {
@@ -32,4 +34,9 @@ body,
 
 .home-root > h1 {
   margin-top: 0.5rem;
+}
+
+.beer-type-filter-wrapper {
+  max-width: 30vh;
+  margin-top: -12px;
 }
