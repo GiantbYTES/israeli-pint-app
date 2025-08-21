@@ -1,7 +1,7 @@
 import { Navigate } from "react-router";
 
 function ProtectedRoute({ children }) {
-  if (!activeUser) return <Navigate to="/" replace />;
+  if (!activeUser) return <Navigate to="/Home" replace />;
 
   return <>{children}</>;
 }
