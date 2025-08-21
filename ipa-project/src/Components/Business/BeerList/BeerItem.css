@@ -1,0 +1,24 @@
+.beer-item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 6px;
+	padding: 8px;
+	background-color: #f9f9f9;
+	border-radius: 4px;
+}
+
+.delete-beer-x {
+	background: none;
+	border: none;
+	color: #c00;
+	font-size: 1.1em;
+	cursor: pointer;
+	margin-right: 8px;
+	padding: 0 4px;
+	border-radius: 2px;
+}
+
+.delete-beer-x:hover {
+	color: #900;
+	background-color: #fee;
+}

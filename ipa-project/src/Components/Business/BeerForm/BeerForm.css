@@ -1,0 +1,37 @@
+.beer-form {
+	display: flex;
+	gap: 8px;
+	align-items: flex-end;
+	margin-bottom: 16px;
+}
+
+.type-input {
+	width: 120px;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+	background-color: #f8f8f8;
+	color: #666;
+}
+
+.add-button {
+	padding: 8px 16px;
+	border: 1px solid #646cff;
+	background-color: #646cff;
+	color: white;
+	border-radius: 4px;
+	font-size: 14px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.add-button:hover:not(:disabled) {
+	background-color: #5856f0;
+}
+
+.add-button:disabled {
+	background-color: #ccc;
+	border-color: #ccc;
+	cursor: not-allowed;
+}
