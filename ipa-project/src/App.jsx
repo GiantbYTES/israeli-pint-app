@@ -1,5 +1,5 @@
 import "./App.css";
-import Business from './Components/Business/Business'
+import Business from "./Components/Business/Business";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import { MantineProvider } from "@mantine/core";
@@ -13,9 +13,14 @@ function App() {
   return (
     <AuthProvider onAuthReady={() => setAuthReady(true)}>
       <Routes>
-      <ProtectedRoute>
-        <Route path="/business-dashboard" element={<Business />} />
-      <ProtectedRoute />
+        <Route
+          path="/business-dashboard"
+          element={
+            <ProtectedRoute>
+              <Business />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
       </Routes>
