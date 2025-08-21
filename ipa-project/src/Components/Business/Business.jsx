@@ -22,7 +22,10 @@ const Business = () => {
     <div className="business">
       <h2>Business Dashboard</h2>
       
-      <BeerForm onAddBeer={handleAddBeer} />
+      <BeerForm 
+        onAddBeer={handleAddBeer} 
+        existingBeers={beers}
+      />
       
       <BeerList 
         beers={beers}

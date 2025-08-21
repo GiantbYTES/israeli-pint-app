@@ -62,7 +62,3 @@
 .dropdown-item:hover {
 	background-color: #f5f5f5;
 }
-
-.dropdown-item:last-child {
-	border-bottom: none;
-}

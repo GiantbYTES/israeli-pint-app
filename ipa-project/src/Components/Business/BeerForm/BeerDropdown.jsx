@@ -2,22 +2,29 @@ import React, { useState, useRef, useEffect } from "react";
 import { BEER_LIST } from "../data/beerData";
 import "./BeerDropdown.css";
 
-const BeerDropdown = ({ value, onChange, onSelect }) => {
+const BeerDropdown = ({ value, onChange, onSelect, existingBeers = [] }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [filteredBeers, setFilteredBeers] = useState(BEER_LIST);
   const dropdownRef = useRef(null);
+
+  const getAvailableBeers = () => {
+    const existingBeerNames = existingBeers.map(beer => beer.name);
+    return BEER_LIST.filter(beer => !existingBeerNames.includes(beer.name));
+  };
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
     onChange(inputValue);
     
+    const availableBeers = getAvailableBeers();
+    
     if (inputValue) {
-      const filtered = BEER_LIST.filter(beer => 
+      const filtered = availableBeers.filter(beer => 
         beer.name.toLowerCase().startsWith(inputValue.toLowerCase())
       );
       setFilteredBeers(filtered);
     } else {
-      setFilteredBeers(BEER_LIST);
+      setFilteredBeers(availableBeers);
     }
     
     setDropdownOpen(true);
@@ -40,12 +47,13 @@ const BeerDropdown = ({ value, onChange, onSelect }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Reset filtered beers when value is cleared
+  // Reset filtered beers when value is cleared or existingBeers change
   useEffect(() => {
+    const availableBeers = getAvailableBeers();
     if (!value) {
-      setFilteredBeers(BEER_LIST);
+      setFilteredBeers(availableBeers);
     }
-  }, [value]);
+  }, [value, existingBeers]);
 
   return (
     <div className="custom-dropdown" ref={dropdownRef}>

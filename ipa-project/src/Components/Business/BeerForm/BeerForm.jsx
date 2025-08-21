@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BeerDropdown from "./BeerDropdown";
 import "./BeerForm.css";
 
-const BeerForm = ({ onAddBeer }) => {
+const BeerForm = ({ onAddBeer, existingBeers }) => {
   const [form, setForm] = useState({ name: "", type: "" });
 
   const handleNameChange = (name) => {
@@ -32,6 +32,7 @@ const BeerForm = ({ onAddBeer }) => {
         value={form.name}
         onChange={handleNameChange}
         onSelect={handleSelectBeer}
+        existingBeers={existingBeers}
       />
 
       <input
