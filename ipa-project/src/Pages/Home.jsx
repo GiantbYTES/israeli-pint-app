@@ -89,8 +89,8 @@ export default function Home() {
   const navigate = useNavigate();
   return (
     <div className="home-root">
-      <h1>IPA - Israeli Pint App</h1>
-      <div className="btns-row">
+      {/*
+      <div className="btns-row floating-controls">
         <div className="filter-btn-wrapper">
           <BeerNameFilter
             beers={dummyBeers}
@@ -109,6 +109,7 @@ export default function Home() {
           <Btn name="login" onClick={() => navigate("/login")} />
         </div>
       </div>
+      */}
       <Map businesses={filteredBusinesses} beers={dummyBeers} />
     </div>
   );
