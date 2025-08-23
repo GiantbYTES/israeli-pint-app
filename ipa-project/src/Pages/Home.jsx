@@ -5,6 +5,7 @@ import LoadingBtn from "../Components/LoadingBtn.jsx";
 import { useState } from "react";
 import BeerTypeFilter from "../Components/BeerTypeFilter.jsx";
 import BeerNameFilter from "../Components/BeerNameFilter.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [dummyBusi, setDummyBusi] = useState([
@@ -86,6 +87,8 @@ export default function Home() {
     return matchesBeer && matchesType;
   });
 
+  const navigate = useNavigate();
+
   return (
     <div className="home-root">
       <h1>IPA - Israeli Pint App</h1>
@@ -105,7 +108,7 @@ export default function Home() {
           />
         </div>
         <div className="login-btn-wrapper">
-          <Btn name="login" />
+          <Btn name="login" onClick={() => navigate("/login")} />
         </div>
       </div>
       <Map businesses={filteredBusinesses} beers={dummyBeers} />
