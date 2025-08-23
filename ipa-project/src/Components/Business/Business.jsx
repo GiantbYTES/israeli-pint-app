@@ -11,10 +11,8 @@ const Business = () => {
   const [storeName, setStoreName] = useState("");
   const [address, setAddress] = useState("");
   const [loading, setLoading] = useState(false);
-  const [beers, setBeers] = useState([
-    { id: 1, name: "IPA Classic", type: "IPA" },
-    { id: 2, name: "Golden Lager", type: "Lager" }
-  ]);
+  const [businessId, setBusinessId] = useState(null);
+  const [beers, setBeers] = useState([]);
 
   // Fetch business data when component mounts
   useEffect(() => {
@@ -29,7 +27,7 @@ const Business = () => {
       setLoading(true);
       const { data, error } = await supabase
         .from('Businesses')
-        .select('store_name, location')
+        .select('id, store_name, location')
         .eq('user_id', activeUser.id)
         .single();
 
@@ -41,11 +39,42 @@ const Business = () => {
       if (data) {
         setStoreName(data.store_name || "");
         setAddress(data.location || "");
+        setBusinessId(data.id);
+        
+        // Fetch beers after getting business data
+        await fetchBeers(data.id);
       }
     } catch (error) {
       console.error('Error:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Fetch beers from Supabase based on business_id
+  const fetchBeers = async (businessIdToUse = businessId) => {
+    if (!businessIdToUse) {
+      console.log('No business ID available to fetch beers');
+      return;
+    }
+
+    try {
+      console.log('Fetching beers for business ID:', businessIdToUse);
+      const { data, error } = await supabase
+        .from('Beers')
+        .select('id, name, type')
+        .eq('business_id', businessIdToUse)
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching beers:', error);
+        return;
+      }
+
+      console.log('Fetched beers:', data);
+      setBeers(data || []);
+    } catch (error) {
+      console.error('Error fetching beers:', error);
     }
   };
 
@@ -154,6 +183,12 @@ const Business = () => {
       }
 
       console.log('Business information saved successfully:', result.data);
+      
+      // Set business ID if we just created a new business
+      if (!existingBusiness && result.data && result.data[0]) {
+        setBusinessId(result.data[0].id);
+      }
+      
       if (latitude && longitude) {
         alert('Business information and coordinates saved successfully!');
       } else {
@@ -168,12 +203,59 @@ const Business = () => {
     }
   };
 
-  const handleAddBeer = (newBeer) => {
-    setBeers([...beers, newBeer]);
+  const handleAddBeer = async (newBeer) => {
+    if (!businessId) {
+      alert('Please save your business information first');
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('Beers')
+        .insert({
+          name: newBeer.name,
+          type: newBeer.type,
+          user_id: activeUser.id,
+          business_id: businessId
+        })
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error adding beer:', error);
+        alert('Error adding beer');
+        return;
+      }
+
+      // Add the new beer to the local state
+      setBeers([...beers, data]);
+      console.log('Beer added successfully:', data);
+    } catch (error) {
+      console.error('Error adding beer:', error);
+      alert('Error adding beer');
+    }
   };
 
-  const handleDeleteBeer = (id) => {
-    setBeers(beers.filter((beer) => beer.id !== id));
+  const handleDeleteBeer = async (id) => {
+    try {
+      const { error } = await supabase
+        .from('Beers')
+        .delete()
+        .eq('id', id);
+
+      if (error) {
+        console.error('Error deleting beer:', error);
+        alert('Error deleting beer');
+        return;
+      }
+
+      // Remove the beer from local state
+      setBeers(beers.filter((beer) => beer.id !== id));
+      console.log('Beer deleted successfully');
+    } catch (error) {
+      console.error('Error deleting beer:', error);
+      alert('Error deleting beer');
+    }
   };
 
   return (
