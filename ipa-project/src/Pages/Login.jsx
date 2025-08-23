@@ -70,6 +70,7 @@ function Login() {
 
         <TextInput
           label="Email"
+          placeholder="Your email"
           required
           radius="md"
           value={form.values.email}
