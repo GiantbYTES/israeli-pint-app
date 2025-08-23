@@ -52,7 +52,8 @@ function Login() {
       </Title>
 
       <Text className="subtitle">
-        Do not have an account yet? <Anchor>Create account</Anchor>
+        Do not have an account yet?{" "}
+        <Anchor href="/register">Create account</Anchor>
       </Text>
 
       <Paper withBorder shadow="sm" p={22} mt={30} radius="md">
