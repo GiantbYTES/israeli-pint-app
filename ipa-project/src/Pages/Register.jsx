@@ -53,6 +53,27 @@ function Register() {
       setRegisterError(error.message || "Registration failed");
       return;
     }
+
+    if (data?.user) {
+      const { error: businessError } = await supabase
+        .from("Businesses")
+        .insert([
+          {
+            user_id: data.user.id,
+            store_name: "",
+            location: "",
+          },
+        ]);
+      if (businessError) {
+        setRegisterError(
+          "User created, but failed to create business: " +
+            businessError.message
+        );
+        setLoading(false);
+        return;
+      }
+    }
+
     setLoading(false);
     setRegisterSuccess(true);
     form.reset();
