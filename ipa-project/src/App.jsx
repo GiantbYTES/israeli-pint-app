@@ -13,9 +13,14 @@ function App() {
   return (
     <AuthProvider onAuthReady={() => setAuthReady(true)}>
       <Routes>
-      <ProtectedRoute>
-        <Route path="/business-dashboard" element={<Business />} />
-      <ProtectedRoute />
+        <Route
+          path="/business-dashboard"
+          element={
+            <ProtectedRoute>
+              <Business />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
       </Routes>
