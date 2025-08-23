@@ -86,9 +86,9 @@ export default function Home() {
       beersForBusiness.some((beer) => selectedTypes.includes(beer.type));
     return matchesBeer && matchesType;
   });
-
-  const navigate = useNavigate();
-
+  
+const navigate = useNavigate();
+  
   return (
     <div className="home-root">
       <h1>IPA - Israeli Pint App</h1>
