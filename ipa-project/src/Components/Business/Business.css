@@ -3,3 +3,41 @@
 	margin: 24px auto 0 auto;
 	padding: 12px;
 }
+
+.store-info {
+	margin-bottom: 32px;
+	padding: 16px;
+	background-color: #f9f9f9;
+	border-radius: 8px;
+	border: 1px solid #e0e0e0;
+}
+
+.input-group {
+	margin-bottom: 16px;
+}
+
+.input-group:last-child {
+	margin-bottom: 0;
+}
+
+.input-group label {
+	display: block;
+	margin-bottom: 6px;
+	font-weight: 600;
+	color: #333;
+}
+
+.input-group input {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+
+.input-group input:focus {
+	outline: none;
+	border-color: #007bff;
+	box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
