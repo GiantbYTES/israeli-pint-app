@@ -6,16 +6,17 @@ const AuthContext = createContext(null);
 
 export function AuthProvider({ onAuthReady, children }) {
   const [activeUser, setActiveUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSession = async () => {
       const { data, error } = await supabase.auth.getSession();
-      console.log(data);
       if (data && data.session && data.session.user) {
         setActiveUser(data.session.user);
       }
-      onAuthReady();
+      setLoading(false);
+      if (onAuthReady) onAuthReady();
     };
     fetchSession();
   }, []);
@@ -30,7 +31,7 @@ export function AuthProvider({ onAuthReady, children }) {
       return error;
     } else {
       setActiveUser(data.user);
-      navigate("/");
+      navigate("/business-dashboard");
     }
   };
 
@@ -43,16 +44,18 @@ export function AuthProvider({ onAuthReady, children }) {
       setActiveUser(null);
       navigate("/");
     }
-    setActiveUser(null);
-    navigate("/");
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <AuthContext
+    <AuthContext.Provider
       value={{ activeUser, onLogin: handleLogin, onLogout: handleLogout }}
     >
       {children}
-    </AuthContext>
+    </AuthContext.Provider>
   );
 }
 
