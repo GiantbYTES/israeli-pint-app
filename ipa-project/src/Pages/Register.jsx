@@ -43,7 +43,6 @@ function Register() {
       return;
     }
     setLoading(true);
-    // Register user in Supabase
     const { email, password } = form.values;
     const { data, error } = await supabase.auth.signUp({
       email,
