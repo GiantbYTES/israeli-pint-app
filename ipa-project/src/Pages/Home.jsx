@@ -86,32 +86,32 @@ export default function Home() {
       beersForBusiness.some((beer) => selectedTypes.includes(beer.type));
     return matchesBeer && matchesType;
   });
-  
-const navigate = useNavigate();
-  
+
+  const navigate = useNavigate();
+
   return (
     <div className="home-root">
-      {/*
-      <div className="btns-row floating-controls">
-        <div className="filter-btn-wrapper">
-          <BeerNameFilter
-            beers={dummyBeers}
-            value={selectedBeers}
-            onChange={setSelectedBeers}
-          />
+      {
+        <div className="btns-row floating-controls">
+          <div className="filter-btn-wrapper">
+            <BeerNameFilter
+              beers={dummyBeers}
+              value={selectedBeers}
+              onChange={setSelectedBeers}
+            />
+          </div>
+          <div className="beer-type-filter-wrapper">
+            <BeerTypeFilter
+              beerTypes={beerTypes}
+              value={selectedTypes}
+              onChange={setSelectedTypes}
+            />
+          </div>
+          <div className="login-btn-wrapper">
+            <Btn name="login" onClick={() => navigate("/login")} />
+          </div>
         </div>
-        <div className="beer-type-filter-wrapper">
-          <BeerTypeFilter
-            beerTypes={beerTypes}
-            value={selectedTypes}
-            onChange={setSelectedTypes}
-          />
-        </div>
-        <div className="login-btn-wrapper">
-          <Btn name="login" onClick={() => navigate("/login")} />
-        </div>
-      </div>
-      */}
+      }
       <Map businesses={filteredBusinesses} beers={dummyBeers} />
     </div>
   );
