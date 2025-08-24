@@ -1,7 +1,13 @@
-body,
-.home-root {
+.login-btn-absolute {
+  position: absolute;
+  top: 32px;
+  right: 40px;
+  z-index: 1;
+}
+body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 .home-root {
@@ -14,13 +20,23 @@ body,
 }
 
 .btns-row {
-  width: 100%;
+  position: fixed;
+  top: 24px;
+  left: 0;
+  width: 100vw;
   display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+
   align-items: center;
-  gap: 24px; /* Added gap for spacing between filters */
+  gap: 24px;
+  padding: 0 32px;
+  z-index: 1002;
+  margin: 0;
+  background: none;
+  pointer-events: none;
+}
+
+.btns-row > * {
+  pointer-events: auto;
 }
 
 .filter-btn-wrapper {
@@ -38,5 +54,6 @@ body,
 
 .beer-type-filter-wrapper {
   max-width: 30vh;
-  margin-top: -12px;
+  margin-top: -15px;
+  margin-left: 100px;
 }
