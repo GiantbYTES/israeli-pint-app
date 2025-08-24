@@ -33,7 +33,7 @@ export default function Home() {
   const [selectedBeers, setSelectedBeers] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
 
-  const handleLogout = async () => {
+ const handleLogout = async () => {
     try {
       await onLogout();
     } catch (error) {

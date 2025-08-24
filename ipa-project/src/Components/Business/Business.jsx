@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import BeerForm from "./BeerForm/BeerForm";
 import BeerList from "./BeerList/BeerList";
 import { supabase } from "../../data/supabase";
@@ -7,21 +8,22 @@ import { useAuth } from "../../auth/AuthProvider";
 import "./Business.css";
 
 const Business = () => {
-  const { activeUser } = useAuth();
+  const { activeUser, onLogout } = useAuth();
+  const navigate = useNavigate();
   const [storeName, setStoreName] = useState("");
   const [address, setAddress] = useState("");
   const [loading, setLoading] = useState(false);
   const [businessId, setBusinessId] = useState(null);
   const [beers, setBeers] = useState([]);
 
-  // Fetch business data when component mounts
+
   useEffect(() => {
     if (activeUser) {
       fetchBusinessData();
     }
   }, [activeUser]);
 
-  // Fetch business data from Supabase
+
   const fetchBusinessData = async () => {
     try {
       setLoading(true);
@@ -31,7 +33,7 @@ const Business = () => {
         .eq('user_id', activeUser.id)
         .single();
 
-      if (error && error.code !== 'PGRST116') { // PGRST116 = no rows returned
+      if (error && error.code !== 'PGRST116') {
         console.error('Error fetching business data:', error);
         return;
       }
@@ -50,6 +52,7 @@ const Business = () => {
       setLoading(false);
     }
   };
+
 
   // Fetch beers from Supabase based on business_id
   const fetchBeers = async (businessIdToUse = businessId) => {
@@ -78,6 +81,7 @@ const Business = () => {
     }
   };
 
+
   // Get coordinates from address using OpenStreetMap
   const getCoordinates = async (address) => {
     const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
@@ -94,7 +98,7 @@ const Business = () => {
     }
   };
 
-  // Handle business name and address updates
+
   const handleBusinessName = async () => {
     if (!activeUser) {
       console.error('No active user');
@@ -118,7 +122,6 @@ const Business = () => {
       console.log('Store name:', storeName);
       console.log('Location:', address);
       
-      // Get coordinates from address
       let latitude = null;
       let longitude = null;
       
@@ -130,9 +133,9 @@ const Business = () => {
         console.log('Coordinates found:', { latitude, longitude });
       } catch (coordError) {
         console.warn('Could not get coordinates for address:', coordError.message);
-        // Continue without coordinates - don't fail the entire operation
       }
       
+
       // Check if business record exists
       const { data: existingBusiness, error: checkError } = await supabase
         .from('Businesses')
@@ -162,18 +165,17 @@ const Business = () => {
           .from('Businesses')
           .update(businessData)
           .eq('user_id', activeUser.id)
-          .select(); // Add select to get the updated data back
+          .select();
 
       } else {
         console.log('Creating new business record');
-        // Insert new record
         result = await supabase
           .from('Businesses')
           .insert({ 
             user_id: activeUser.id,
             ...businessData
           })
-          .select(); // Add select to get the inserted data back
+          .select();
       }
 
       if (result.error) {
@@ -258,9 +260,38 @@ const Business = () => {
     }
   };
 
+  const handleGoHome = () => {
+    navigate('/');
+  };
+
+  const handleLogout = async () => {
+    try {
+      await onLogout();
+    } catch (error) {
+      console.error('Error logging out:', error);
+      alert('Error logging out');
+    }
+  };
+
   return (
-    <div className="business">
-      <h2>Business Dashboard</h2>
+    <>
+      <div className="nav-buttons">
+        <button 
+          onClick={handleGoHome}
+          className="nav-btn"
+        >
+          Home
+        </button>
+        <button 
+          onClick={handleLogout}
+          className="nav-btn"
+        >
+          Logout
+        </button>
+      </div>
+
+      <div className="business">
+        <h2>Business Dashboard</h2>
       
       <div className="store-info">
         <div className="input-group">
@@ -306,6 +337,7 @@ const Business = () => {
         onDeleteBeer={handleDeleteBeer}
       />
     </div>
+    </>
   );
 };
 
