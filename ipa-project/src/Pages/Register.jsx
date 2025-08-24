@@ -13,6 +13,7 @@ import {
 import { useState } from "react";
 import { useForm } from "@mantine/form";
 import { IconAlertCircle } from "@tabler/icons-react";
+import { Link } from "react-router";
 import { supabase } from "../data/supabase";
 import "./Login.css";
 
@@ -157,6 +158,13 @@ function Register() {
         >
           Register
         </Button>
+        <Anchor
+          component={Link}
+          to="/"
+          style={{ display: "block", textAlign: "center", marginTop: 16 }}
+        >
+          Home
+        </Anchor>
       </Paper>
     </Container>
   );

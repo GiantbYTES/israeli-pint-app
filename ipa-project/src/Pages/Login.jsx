@@ -99,6 +99,13 @@ function Login() {
         >
           Sign in
         </Button>
+        <Anchor
+          component={Link}
+          to="/"
+          style={{ display: "block", textAlign: "center", marginTop: 16 }}
+        >
+          Home
+        </Anchor>
       </Paper>
     </Container>
   );
