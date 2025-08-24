@@ -70,7 +70,7 @@ function Login() {
 
         <TextInput
           label="Email"
-          placeholder="Your email"
+          placeholder="example@email.com"
           required
           radius="md"
           value={form.values.email}
@@ -79,7 +79,7 @@ function Login() {
         />
         <PasswordInput
           label="Password"
-          placeholder="Your password"
+          placeholder="•••••••••••••"
           required
           mt="md"
           radius="md"

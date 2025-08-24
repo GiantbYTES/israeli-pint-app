@@ -118,6 +118,7 @@ function Register() {
         <TextInput
           label="Email"
           required
+          placeholder="example@email.com"
           radius="md"
           value={form.values.email}
           onChange={(e) => form.setFieldValue("email", e.currentTarget.value)}
@@ -126,6 +127,7 @@ function Register() {
         <PasswordInput
           label="Password"
           required
+          placeholder="•••••••••••••"
           mt="md"
           radius="md"
           value={form.values.password}
@@ -137,6 +139,7 @@ function Register() {
         <PasswordInput
           label="Confirm Password"
           required
+          placeholder="•••••••••••••"
           mt="md"
           radius="md"
           value={form.values.confirmPassword}
