@@ -6,6 +6,7 @@ import { useState } from "react";
 import BeerTypeFilter from "../Components/BeerTypeFilter.jsx";
 import BeerNameFilter from "../Components/BeerNameFilter.jsx";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthProvider";
 
 export default function Home() {
   const [dummyBusi, setDummyBusi] = useState([
@@ -67,6 +68,10 @@ export default function Home() {
   const [selectedBeers, setSelectedBeers] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
 
+  function handleLogout() {
+    handleLogout;
+  }
+
   // Get unique beer types for the BeerTypeFilter
   const beerTypes = Array.from(new Set(dummyBeers.map((beer) => beer.type)));
 
@@ -88,6 +93,7 @@ export default function Home() {
   });
 
   const navigate = useNavigate();
+  const { activeUser, onLogout } = useAuth();
 
   return (
     <div className="home-root">
@@ -109,8 +115,21 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="login-btn-absolute">
-            <Btn name="login" onClick={() => navigate("/login")} />
+          <div
+            className="login-btn-absolute"
+            key={activeUser ? activeUser.id || "user" : "guest"}
+          >
+            {activeUser ? (
+              <div className="manage-logout-flex">
+                <Btn
+                  name="manage"
+                  onClick={() => navigate("/business-dashboard")}
+                />
+                <Btn name="logout" onClick={handleLogout} />
+              </div>
+            ) : (
+              <Btn name="login" onClick={() => navigate("/login")} />
+            )}
           </div>
         </>
       }

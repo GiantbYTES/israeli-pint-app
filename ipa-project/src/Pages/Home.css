@@ -1,6 +1,12 @@
+.manage-logout-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
 .login-btn-absolute {
   position: absolute;
-  top: 32px;
+  top: 25px;
   right: 40px;
   z-index: 1;
 }
