@@ -6,7 +6,14 @@ export default function Map({ businesses, beers }) {
     <MapContainer
       center={[32.0853, 34.7818]}
       zoom={13}
-      style={{ height: "60vh", width: "80vw" }}
+      style={{
+        height: "100vh",
+        width: "100vw",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        zIndex: 0,
+      }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

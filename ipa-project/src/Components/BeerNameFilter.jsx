@@ -12,8 +12,7 @@ export default function BeerNameFilter(props) {
     <div style={{ display: "flex", gap: "24px", alignItems: "flex-end" }}>
       <div style={{ flex: 1 }}>
         <MultiSelect
-          label="Your Favorite BEERS"
-          placeholder="Pick the correct one"
+          placeholder="Your Favorite BEERS"
           data={beerNames}
           searchable
           clearable
