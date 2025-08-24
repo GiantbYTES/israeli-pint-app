@@ -33,9 +33,14 @@ export default function Home() {
   const [selectedBeers, setSelectedBeers] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
 
-  function handleLogout() {
-    handleLogout;
-  }
+ const handleLogout = async () => {
+    try {
+      await onLogout();
+    } catch (error) {
+      console.error("Error logging out:", error);
+      alert("Error logging out");
+    }
+  };
 
   // Get unique beer types for the BeerTypeFilter
   const beerTypes = Array.from(new Set(dummyBeers.map((beer) => beer.type)));
