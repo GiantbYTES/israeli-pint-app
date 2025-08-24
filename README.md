@@ -3,7 +3,7 @@
 ![React](https://img.shields.io/badge/Frontend-React-blue?logo=react)  
 ![Leaflet](https://img.shields.io/badge/Maps-Leaflet-green?logo=leaflet)  
 ![Supabase](https://img.shields.io/badge/Backend-Supabase-black?logo=supabase)  
-![License](https://img.shields.io/badge/License-MIT-yellow)  
+
 
 **IPA** (Israeli Pint App) is a **full-stack web application** that connects beer enthusiasts with local businesses.  
 It features an **interactive map experience**, where customers can discover beers nearby, and businesses can easily add and manage their stores and beer offerings.  
