@@ -25,10 +25,7 @@ export default function Map({ businesses, beers }) {
           (beer) => beer.business_id === busi.id
         );
         return (
-          <Marker
-            key={busi.id}
-            position={[busi.location.lat, busi.location.lng]}
-          >
+          <Marker key={busi.id} position={[busi.latitude, busi.longitude]}>
             <Popup maxWidth={300} minWidth={200}>
               <div
                 style={{
