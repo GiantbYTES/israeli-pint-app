@@ -1,3 +1,114 @@
+@media (max-width: 600px) {
+  .filter-btn-wrapper {
+    position: fixed;
+    left: 30vw;
+    bottom: 32px;
+    width: 80vw;
+    margin: 0;
+    padding: 12px 8px 16px 8px;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 12px #0002;
+    border-radius: 16px;
+  }
+}
+@media (max-width: 600px) {
+  .btns-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px;
+    top: 12px;
+    width: 100vw;
+  }
+
+  .filters-group,
+  .btns-row > .filters-group {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .filter-btn-wrapper {
+    padding-left: 0;
+    max-width: 100vw;
+    margin-left: 0;
+    margin-top: 64px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .beer-type-filter-wrapper {
+    display: none !important;
+  }
+
+  .login-btn-absolute {
+    position: static;
+    margin-top: 8px;
+    right: auto;
+    top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .manage-logout-flex {
+    width: 100%;
+    justify-content: center;
+    gap: 12px;
+  }
+}
+@media (max-width: 600px) {
+  .btns-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px;
+    top: 12px;
+    width: 100vw;
+  }
+
+  .filters-group,
+  .btns-row > .filters-group {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .filter-btn-wrapper,
+  .beer-type-filter-wrapper {
+    padding-left: 0;
+    max-width: 100vw;
+    margin-left: 0;
+    margin-top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .login-btn-absolute {
+    position: static;
+    margin-top: 8px;
+    right: auto;
+    top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .manage-logout-flex {
+    width: 100%;
+    justify-content: center;
+    gap: 12px;
+  }
+}
 .manage-logout-flex {
   display: flex;
   flex-direction: row;
