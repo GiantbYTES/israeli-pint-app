@@ -1,11 +1,11 @@
-🍺 IPA – Israeli Pint App
+🍺 **IPA – Israeli Pint App**
 
 IPA (Israeli Pint App) is a full-stack web application that connects beer enthusiasts with local businesses.
 It features an interactive map experience, where customers can discover beers nearby, and businesses can easily add and manage their stores and beer offerings.
 
 Built with a modern web stack and cloud-native backend, IPA delivers a smooth and scalable experience for both guests and businesses.
 
-🚀 Features
+🚀** Features**
 👤 Guests
 
 Explore an interactive Leaflet.js map with beer spots in real time
@@ -32,7 +32,7 @@ Business Page → Manage stores & beers
 
 Login / Register → Business authentication
 
-🛠️ Tech Stack
+🛠️ **Tech Stack**
 Frontend
 
 React.js – Component-based UI
@@ -81,7 +81,7 @@ type
 
 store_name → FK → Stores.name
 
-🔌 APIs & Integrations
+🔌 **APIs & Integrations**
 
 Leaflet.js – Interactive geospatial mapping
 
@@ -89,7 +89,7 @@ Supabase Auth – Business authentication & session handling
 
 Supabase Database – Cloud Postgres for users, stores, beers
 
-📸 Mockups
+📸 **Mockups**
 
 Home/Map Screen – Explore stores on the map
 
@@ -99,7 +99,7 @@ Business Page – Add/manage stores & beers
 
 Login / Register Page – Business onboarding
 
-💡 Future Roadmap
+💡 **Future Roadmap**
 
 ✅ Interactive beer filtering by type & style
 
@@ -111,7 +111,7 @@ Login / Register Page – Business onboarding
 
 🚀 Advanced analytics dashboard for businesses
 
-🏗️ Getting Started
+🏗️ **Getting Started**
 Clone & Install
 git clone https://github.com/your-username/IPA.git
 cd IPA
@@ -127,7 +127,7 @@ Create a .env file with your Supabase credentials:
 VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_KEY=your_public_anon_key
 
-🍻 Contributing
+🍻 **Contributing**
 
 Contributions are welcome!
 Open a PR with your feature, bugfix, or idea. Let’s make IPA the ultimate beer discovery app 🍺
